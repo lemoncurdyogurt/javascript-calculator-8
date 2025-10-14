@@ -11,6 +11,10 @@ class App {
   async getSumNumbers() {
     const input =
       await Console.readLineAsync('덧셈할 문자열을 입력해주세요.\n');
+    if (!input || input.trim() === '') {
+      Console.print('결과 : 0');
+      return;
+    }
   }
 }
 
