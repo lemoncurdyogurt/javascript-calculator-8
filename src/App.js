@@ -19,13 +19,32 @@ class App {
     }
     return input;
   }
+
   splitAndSum(input) {
     if (!input) return 0;
+    const { customSeparator, numbersPart } = this.customSeparator(input);
     const separators = [',', ':'];
+
+    let target = input;
+    if (customSeparator) {
+      separators.push(customSeparator);
+      target = numbersPart;
+    }
+
     const regex = new RegExp(separators.join('|'));
     const numbers = input.split(regex).map(num => Number(num));
     const sum = numbers.reduce((acc, number) => acc + number, 0);
     return sum;
+  }
+  
+  customSeparator(input) {
+    if (input.startsWith('//')) {
+      const separatorEndIndex = input.indexOf('\n');
+      const customSeparator = input.substring(2, separatorEndIndex);
+      const numbersPart = input.substring(separatorEndIndex + 1);
+      return { customSeparator, numbersPart };
+    }
+    return { customSeparator: null, numbersPart: input };
   }
 }
 export default App;
