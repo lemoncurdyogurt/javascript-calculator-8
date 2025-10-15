@@ -33,7 +33,12 @@ class App {
     }
 
     const regex = new RegExp(separators.join('|'), 'g');
-    const numbers = target.split(regex).map(num => Number(num));
+    const numbers = target.split(regex).map(num => {
+      // 정해진 구분자가 아닌 문자가 포함된 경우 에러 처리
+      const n = Number(num);
+      if (isNaN(n)) throw new Error(`잘못된 입력: ${num}`);
+    });
+
     const sum = numbers.reduce((acc, num) => acc + num, 0);
     return sum;
   }
@@ -46,7 +51,7 @@ class App {
 
       const potentialSeperator = input.substring(2, separatorEndIndex);
       // 빈문자열인 경우 에러 처리
-      if (potentialSeperator === "") throw new Error('커스텀 구분자 형식 오류');
+      if (potentialSeperator === '') throw new Error('커스텀 구분자 형식 오류');
       const customSeparator = potentialSeperator;
 
       const numbersPart = input.substring(separatorEndIndex + 1);
