@@ -49,7 +49,7 @@ class App {
 
   customSeparator(input) {
     if (input.startsWith('//')) {
-      const separatorEndIndex = input.indexOf('\n');
+      const separatorEndIndex = input.indexOf('\\n');
       // \n이 없는 경우 에러 처리
       if (separatorEndIndex === -1) throw new Error('[ERROR] 커스텀 구분자 형식 오류');
 
