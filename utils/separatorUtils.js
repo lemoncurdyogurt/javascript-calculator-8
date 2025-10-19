@@ -1,4 +1,4 @@
-export function customSeparator(input) {
+export function extractCustomSeparator(input) {
   if (!input.startsWith('//')) {
     return { customSeparator: null, numbersPart: input };
   }
