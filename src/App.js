@@ -58,7 +58,7 @@ class App {
       if (potentialSeperator === '') throw new Error('[ERROR] 커스텀 구분자 형식 오류');
       const customSeparator = potentialSeperator;
 
-      const numbersPart = input.substring(separatorEndIndex + 1);
+      const numbersPart = input.substring(separatorEndIndex + 2);
       return { customSeparator, numbersPart };
     }
     return { customSeparator: null, numbersPart: input };
